@@ -1,0 +1,29 @@
+<h1>Subir un nuevo recurso</h1>
+<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="resourceName" class="form-label">Nombre del recurso: </label>
+    <input type="text" class="form-control" id="resourceName" formControlName="resourceName">
+    <div class="invalid-feedback" *ngIf="uploadForm.get('resourceName')">
+      Introduce un nombre para el recurso
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="classroomUUID" class="form-label"> Classroom al que subir el recurso </label>
+    <select class="form-select" id="classroomUUID" formControlName="classroomUUID">
+      <option *ngFor="let classroom of classrooms" [ngValue]="classroom.uuidClassroom">{{classroom.name}}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="resourceType" class="form-label">Tipo de recurso </label>
+    <select class="form-select" id="resourceType" formControlName="resourceType">
+      <option>VIDEO</option>
+      <option>IMAGE</option>
+      <option>URL</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="resourceFile" class="form-label">ID del classroom </label>
+    <input type="file" class="form-control" id="resourceFile" name="resourceFile" (change)="onFileSelect($event)">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
