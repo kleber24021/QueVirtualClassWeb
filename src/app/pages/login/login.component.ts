@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2'
 import {LoginUser} from "../../models/user/user.model";
+import {CoreComponent} from "../../components/core-component/core.component";
 
 
 @Component({
@@ -11,7 +12,7 @@ import {LoginUser} from "../../models/user/user.model";
   templateUrl: './login.component.html',
   styles: []
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends CoreComponent implements OnInit {
   user: LoginUser;
   remember = false;
 
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
+    super();
     this.user = new LoginUser();
   }
 
@@ -40,22 +42,32 @@ export class LoginComponent implements OnInit {
     });
     Swal.showLoading();
 
-    this.authService.doLogin(this.user).subscribe(
-      res => {
-        Swal.close();
-        if (this.remember) {
-          localStorage.setItem('username', this.user.username)
-        }
-        this.router.navigateByUrl('/upload');
-      },
-      error => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error al autenticar',
-          text: 'Error al iniciar sesión'
-        })
+    this.authService.doLogin(this.user).subscribe({
+      next: res => {
+      Swal.close();
+      if (this.remember) {
+        localStorage.setItem('username', this.user.username)
       }
-    )
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: `Logueado correctamente. ¡Bienvenid@, ${res.body?.name}!`
+        })
+      this.router.navigateByUrl('/upload');
+    },
+    error: error => {
+      Swal.close()
+      console.log(error)
+      this.showDialog(`${error.status} ${error.statusText}`, "Error al autenticar", "error")
+    }
+    })
   }
 
 }

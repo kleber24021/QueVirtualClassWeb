@@ -16,8 +16,9 @@ export class UsersService {
     return this.httpClient.post<UserGetDTO>(`${environment.apiUrl}users`, userToCreate);
   }
 
-  editUser(usetToEdit: UserPostPutDTO){
-    return this.httpClient.put<UserGetDTO>(`${environment.apiUrl}users`, usetToEdit);
+  editUser(userToEdit: any){
+    console.log(userToEdit);
+    return this.httpClient.put<UserGetDTO>(`${environment.apiUrl}users`, userToEdit);
   }
 
   getAllUsers(){
@@ -29,10 +30,10 @@ export class UsersService {
   }
 
   getUserByUsername(username: string){
-    return this.httpClient.get<UserGetDTO[]>(`${environment.apiUrl}users/${username}`)
+    return this.httpClient.get<UserGetDTO>(`${environment.apiUrl}users/${username}`)
   }
 
   deleteUser(username: string){
-    return this.httpClient.delete<string>(`${environment.apiUrl}users/${username}`)
+    return this.httpClient.delete(`${environment.apiUrl}users/${username}`, {responseType: "text"})
   }
 }

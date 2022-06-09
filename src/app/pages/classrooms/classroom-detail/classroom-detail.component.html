@@ -1,0 +1,38 @@
+<div style="width: 100%; height: 100%">
+  <app-back-button></app-back-button>
+  <h1 *ngIf="classroomId !== 'create'; else createTitle">Detalles de {{classroomName | async}}</h1>
+  <ng-template #createTitle>
+    <h1>Nueva clase:</h1>
+  </ng-template>
+  <form [formGroup]="classroomForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre: </label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+      <div class="invalid-feedback" *ngIf="classroomForm.get('name')">
+        Introduce un nombre para la clase
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="course" class="form-label">Curso: </label>
+      <input type="text" class="form-control" id="course" formControlName="course">
+      <div class="invalid-feedback" *ngIf="classroomForm.get('course')">
+        Introduce un nombre de curso
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="adminUsername" class="form-label">Nombre profesor </label>
+      <input type="text" class="form-control" id="adminUsername" formControlName="adminUsername">
+      <div class="invalid-feedback" *ngIf="classroomForm.get('adminUsername')">
+        Introduce un profesor
+      </div>
+    </div>
+    <ng-multiselect-dropdown
+      formControlName = "studentsUsername"
+      [placeholder]="'Alumnos'"
+      [settings] = "dropdownSettings"
+      [data]="allUsers"
+    ></ng-multiselect-dropdown>
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 20px">Submit</button>
+  </form>
+</div>

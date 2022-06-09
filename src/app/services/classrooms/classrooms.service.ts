@@ -15,7 +15,11 @@ export class ClassroomsService {
 
   getAllClassroomsByUsername(username: string) {
     let params = new HttpParams().set('username', username)
-    return this.http.get<ClassroomGetDTO[]>(`${environment.apiUrl}classrooms`, {params: params})
+    return this.http.get<ClassroomGetDTO[]>(`${environment.apiUrl}classrooms`, {params: params});
+  }
+
+  getClassroomById(classroomId: string){
+    return this.http.get<ClassroomGetDTO>(`${environment.apiUrl}classrooms/${classroomId}`);
   }
 
   createClassroom(classroomToCreate: ClassroomPostDTO) {

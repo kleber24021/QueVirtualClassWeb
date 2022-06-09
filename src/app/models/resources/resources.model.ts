@@ -1,5 +1,3 @@
-import {ResourceService} from "../../services/resources/resource.service";
-
 export enum ResourceType{
   VIDEO = 'VIDEO', IMAGE = 'IMAGE', URL = 'URL'
 }
@@ -13,12 +11,19 @@ export interface ResourceGetDetailDTO {
   comments: ResourceComment[];
 }
 
+export interface ResourcePutDTO{
+  uuidResource: string;
+  resourceName: string;
+  classroomUUID: string;
+  resourceType: ResourceType;
+}
+
 export interface ResourceGetLiteDTO{
   uuidResource: string;
   resourceName: string;
   resourceEndpoint: string;
   timeStamp: string;
-  resourceType: ResourceService;
+  resourceType: ResourceType;
 }
 
 export interface ResourceComment{

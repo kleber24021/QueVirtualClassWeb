@@ -1,1 +1,43 @@
-<p>resources-list works!</p>
+<app-back-button></app-back-button>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col" *ngFor="let resource of resourcesList">
+    <div class="card">
+      <div class="card-body">
+        <div class="container-fluid d-inline-flex justify-content-center card-img-top">
+          <div class="row">
+            <div class="col" [ngSwitch]="resource.resourceType">
+              <i *ngSwitchCase="'IMAGE'" class="fa-solid fa-image fa-7x"></i>
+              <i *ngSwitchCase="'VIDEO'" class="fa-solid fa-video fa-7x"></i>
+              <i *ngSwitchDefault class="fa-solid fa-link fa-7x"></i>
+            </div>
+          </div>
+        </div>
+        <h5 class="card-title">{{resource.resourceName}}</h5>
+        <p class="card-text">{{resource.uuidResource}}</p>
+      </div>
+      <div class="card-footer">
+        <div class="container-fluid">
+          <div class="row align-items-start">
+            <div class="col-2">
+              <a href="{{resource.resourceEndpoint}}" target="_blank">
+                <button type="button" class="btn btn-success">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </a>
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-primary" (click)="goToResourceDetail(resource.uuidResource)">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-danger" (click)="deleteResource(resource)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

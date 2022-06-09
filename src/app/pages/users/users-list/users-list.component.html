@@ -1,1 +1,39 @@
-<p>users-list works!</p>
+<div class="d-flex flex-row-reverse" style="padding-bottom: 10px">
+  <button type="button" class="btn btn-primary" [routerLink]="['/users', 'create']">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+</div>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col" *ngFor="let user of usersList">
+    <div class="card">
+      <div class="card-body">
+        <div *ngIf="!user.profileImage" class="container-fluid d-inline-flex justify-content-center card-img-top" style="width: 100%; height: 10vw;">
+          <div class="row">
+            <div class="col">
+              <i class="fa-solid fa-user fa-7x"></i>
+            </div>
+          </div>
+        </div>
+        <img *ngIf="user.profileImage" [src]="user.profileImage" class="card-img-top" style="width: 100%; height: 10vw; object-fit: scale-down" [alt]="user.surname">
+        <h5 class="card-title">{{user.username}}</h5>
+        <p class="card-text">{{user.name}} {{user.surname}}</p>
+      </div>
+      <div class="card-footer">
+        <div class="container-fluid">
+          <div class="row align-items-start">
+            <div class="col-2">
+              <button type="button" class="btn btn-primary" [routerLink]="['/users', user.username]">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-danger" (click)="deleteUser(user)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

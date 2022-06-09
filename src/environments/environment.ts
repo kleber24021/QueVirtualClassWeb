@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   title: 'QueVirtualClassDev',
-  apiUrl: 'http://localhost:8080/QueVirtualClassroom-1.0/virtual-classrooms/'
+  apiUrl: 'http://localhost:8080/QueVirtualClassroom-1.0/virtual-classrooms/',
+  domain: 'localhost:8080'
 };
 
 /*

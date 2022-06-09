@@ -1,0 +1,45 @@
+<div style="width: 100%; height: 100%">
+  <app-back-button></app-back-button>
+  <h1 *ngIf="userId !== 'create'; else createTitle">Detalles de {{userId}}</h1>
+  <ng-template #createTitle>
+    <h1>Nuevo usuario:</h1>
+  </ng-template>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Nombre de usuario: </label>
+      <input type="text" class="form-control" id="username" formControlName="username">
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre: </label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+    <div class="mb-3">
+      <label for="surname" class="form-label">Apellidos: </label>
+      <input type="text" class="form-control" id="surname" formControlName="surname">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email: </label>
+      <input type="text" class="form-control" id="email" formControlName="email">
+    </div>
+    <div class="mb-3">
+      <label for="profileImage" class="form-label">Foto de perfil: </label>
+      <input type="text" class="form-control" id="profileImage" formControlName="profileImage">
+    </div>
+    <div class="mb-3">
+      <label for="userType" class="form-label">Tipo de usuario: </label>
+      <select class="form-select" id="userType" formControlName="userType">
+        <option [value]="'TEACHER'">Profesor</option>
+        <option [value]="'STUDENT'">Estudiante</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña (no obligatorio para actualizar): </label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+    <div class="mb-3">
+      <label for="passwordConfirmation" class="form-label">Confirmación contraseña: </label>
+      <input type="password" class="form-control" id="passwordConfirmation" formControlName="passwordConfirmation">
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top: 20px">Submit</button>
+  </form>
+</div>

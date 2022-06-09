@@ -1,1 +1,36 @@
-<p>classrooms-list works!</p>
+<div class="d-flex flex-row-reverse" style="padding-bottom: 10px">
+  <button type="button" class="btn btn-primary" [routerLink]="['../detail', 'create']">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+</div>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col" *ngFor="let classroom of classrooms">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{classroom.name}}</h5>
+        <p class="card-text">{{classroom.adminUsername}}</p>
+      </div>
+      <div class="card-footer">
+        <div class="container-fluid">
+          <div class="row align-items-start">
+            <div class="col-2">
+              <button type="button" class="btn btn-primary" [routerLink]="['/classrooms', classroom.uuidClassroom]">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-info" [routerLink]="['/resources', classroom.uuidClassroom]">
+                <i class="fa-solid fa-photo-film" style="color: white"></i>
+              </button>
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-danger" (click)="deleteClassroom(classroom)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

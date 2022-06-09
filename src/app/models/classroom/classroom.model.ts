@@ -3,14 +3,14 @@ export interface ClassroomGetDTO {
   name: string;
   course: string;
   adminUsername: string;
-  studentsUsername: string[];
+  studentsUsernames: string[];
 }
 
 export interface ClassroomPostDTO {
   name: string;
   course: string;
   adminUsername: string;
-  studentsUsername: string;
+  studentsUsernames: string;
 }
 
 export interface ClassroomPutDTO {
@@ -18,5 +18,5 @@ export interface ClassroomPutDTO {
   name: string;
   course: string;
   adminUsername: string;
-  studentsUsername: string[]
+  studentsUsernames: string[]
 }

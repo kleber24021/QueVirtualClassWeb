@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private router: Router) {
   }
 
-  hasRoute(route: string){
+  hasRoute(route: string) {
     return this.router.url.includes(route);
   }
 }

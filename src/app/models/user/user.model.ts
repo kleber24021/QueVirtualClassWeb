@@ -13,12 +13,12 @@ export interface UserGetDTO{
 
 export interface UserPostPutDTO{
   username:string;
-  password:string;
   name:string;
   surname:string;
   email:string;
   profileImage:string;
   userType: UserType;
+  password:string;
 }
 
 
