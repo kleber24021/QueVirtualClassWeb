@@ -111,7 +111,7 @@ export class UploadComponent extends CoreComponent implements OnInit {
             this.showDialog(`Recurso con la id: ${res['uuidResource']}`, 'Recurso subido', 'success');
           },
           error: error => {
-            this.showDialog(`${error.status} ${error.statusText}`, 'Error al autenticar', 'error')
+            this.showDialog(error.error, 'Error al autenticar', 'error')
           }
         });
     } else {

@@ -14,9 +14,8 @@ export class ResourceService {
   }
 
   postUploadResource(formData: FormData) {
-    return this.httpClient.post(`${environment.apiUrl}resources`, formData);
+    return this.httpClient.post<any>(`${environment.apiUrl}resources`, formData);
   }
-
   getAllUploadedResourcesByClassroomAndType(classroomId: string, resourceType: string) {
     let params = new HttpParams().set('classroomId', classroomId)
     params.append('resourceType', resourceType)
