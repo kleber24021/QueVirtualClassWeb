@@ -6,6 +6,7 @@ import {CoreComponent} from "../../../components/core-component/core.component";
 import {map} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import Swal from "sweetalert2";
+import {AuthService} from "../../../services/auth/auth.service";
 
 @Component({
   selector: 'app-resources-list',
@@ -20,6 +21,7 @@ export class ResourcesListComponent extends CoreComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private resourceService: ResourceService,
+    private authService: AuthService,
     private router: Router
   ) {
     super()
@@ -36,7 +38,7 @@ export class ResourcesListComponent extends CoreComponent implements OnInit {
         map(resourceList =>
           resourceList.map(resource => {
             let resourceEndpoint = resource.resourceEndpoint;
-            resource.resourceEndpoint = `${environment.apiUrl}resources/file/${resourceEndpoint}`;
+            resource.resourceEndpoint = `${environment.apiUrl}resources/file/${resourceEndpoint}?username=${this.authService.username}`;
             return resource;
           })
         )
